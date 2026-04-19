@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider hub — KasiGlow</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="glowlink.css">
+</head>
+<body data-page="provider-dashboard">
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">KasiGlow</a>
+  <div class="nav-links">
+    <a href="index.html" class="nl">Home</a>
+    <a href="services.html" class="nl">Services</a>
+    <a href="providers.html" class="nl">Providers</a>
+    <a href="safety.html" class="nl">Safety</a>
+    <a href="saved.html" class="nl">Saved</a>
+    <a href="dashboard.html" class="nl">My Bookings</a>
+    <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  </div>
+  <div class="nav-r">
+    <button type="button" class="nav-cart" onclick="toggleCart()" aria-label="Open cart">Cart<span class="cart-badge" id="cb"></span></button>
+    <a href="checkout.html" class="nl nav-cta">Book Now</a>
+    <button type="button" class="hamburger" onclick="toggleMob()">Menu</button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="index.html" class="nl">Home</a>
+  <a href="services.html" class="nl">Services</a>
+  <a href="providers.html" class="nl">Providers</a>
+  <a href="safety.html" class="nl">Safety Companion</a>
+  <a href="saved.html" class="nl">Saved Stylists</a>
+  <a href="dashboard.html" class="nl">My Bookings</a>
+  <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  <a href="checkout.html" class="nl nav-cta" style="margin-top:8px;justify-content:center;display:flex">Book Now</a>
+</div>
+
+<div class="overlay" id="ov" onclick="toggleCart()"></div>
+<div class="drawer" id="dr">
+  <div class="dh"><h2>Your cart</h2><button type="button" class="d-close" onclick="toggleCart()" aria-label="Close">×</button></div>
+  <div class="d-items" id="di"></div>
+  <div class="d-foot">
+    <div class="d-total"><span class="d-total-l">Total</span><span class="d-total-v" id="dt">R0</span></div>
+    <button type="button" class="btn-checkout" onclick="location.href='checkout.html'">Proceed to checkout</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<div class="page-top">
+  <h1>Provider hub</h1>
+  <p>Static preview for artists managing KasiGlow. Customer-facing discovery still lives under Services and Providers.</p>
+</div>
+
+<section class="sec" style="background:var(--blush);padding-top:0">
+  <div class="kpi-grid">
+    <div class="panel" style="margin:0"><h3>This week</h3><p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--plum);margin-top:8px">12</p><p style="color:var(--mid);font-size:13px">Bookings</p></div>
+    <div class="panel" style="margin:0"><h3>Earnings</h3><p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--plum);margin-top:8px">R4 280</p><p style="color:var(--mid);font-size:13px">After platform fee (demo)</p></div>
+    <div class="panel" style="margin:0"><h3>Rating</h3><p style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--plum);margin-top:8px">4.9</p><p style="color:var(--mid);font-size:13px">Last 30 days</p></div>
+  </div>
+  <div class="panel">
+    <h3>Today's schedule</h3>
+    <table class="table">
+      <thead><tr><th>Time</th><th>Client</th><th>Service</th></tr></thead>
+      <tbody>
+        <tr><td>09:00</td><td>Lindiwe</td><td>Acrylic refill</td></tr>
+        <tr><td>11:30</td><td>Anonymous</td><td>Gel overlay</td></tr>
+        <tr><td>15:00</td><td>Palesa</td><td>Pedicure</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <h3>Listing quality</h3>
+    <p style="color:var(--mid);font-size:14px;line-height:1.75">Verification: complete. Safety Companion opt-in: on. Response time badge: fast.</p>
+    <a href="providers.html" class="btn btn-secondary" style="margin-top:10px">View public profile grid</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div><div class="fb">KasiGlow</div><div class="fd">Connecting township beauty entrepreneurs with customers across South Africa.</div></div>
+    <div><div class="fh">Platform</div><ul class="fl"><li><a href="services.html">Browse services</a></li><li><a href="providers.html">Find providers</a></li><li><a href="safety.html">Safety Companion</a></li><li><a href="saved.html">Saved stylists</a></li></ul></div>
+    <div><div class="fh">Services</div><ul class="fl"><li><a href="services.html?cat=braiding">Braiding</a></li><li><a href="services.html?cat=nails">Nails</a></li><li><a href="services.html?cat=lashes">Lashes</a></li><li><a href="services.html?cat=hair">Hair</a></li></ul></div>
+    <div><div class="fh">Support</div><ul class="fl"><li><a href="dashboard.html">My dashboard</a></li><li><a href="provider-dashboard.html">Provider hub</a></li><li><a href="#">GBV: 0800 428 428</a></li><li><a href="#">SAPS: 10111</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 KasiGlow · INF3014F · UCT</span><span style="color:var(--gold)">Empowering township beauty</span></div>
+</footer>
+
+<script src="glowlink-app.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Companion — KasiGlow</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="glowlink.css">
+</head>
+<body data-page="safety">
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">KasiGlow</a>
+  <div class="nav-links">
+    <a href="index.html" class="nl">Home</a>
+    <a href="services.html" class="nl">Services</a>
+    <a href="providers.html" class="nl">Providers</a>
+    <a href="safety.html" class="nl">Safety</a>
+    <a href="saved.html" class="nl">Saved</a>
+    <a href="dashboard.html" class="nl">My Bookings</a>
+    <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  </div>
+  <div class="nav-r">
+    <button type="button" class="nav-cart" onclick="toggleCart()" aria-label="Open cart">Cart<span class="cart-badge" id="cb"></span></button>
+    <a href="checkout.html" class="nl nav-cta">Book Now</a>
+    <button type="button" class="hamburger" onclick="toggleMob()">Menu</button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="index.html" class="nl">Home</a>
+  <a href="services.html" class="nl">Services</a>
+  <a href="providers.html" class="nl">Providers</a>
+  <a href="safety.html" class="nl">Safety Companion</a>
+  <a href="saved.html" class="nl">Saved Stylists</a>
+  <a href="dashboard.html" class="nl">My Bookings</a>
+  <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  <a href="checkout.html" class="nl nav-cta" style="margin-top:8px;justify-content:center;display:flex">Book Now</a>
+</div>
+
+<div class="overlay" id="ov" onclick="toggleCart()"></div>
+<div class="drawer" id="dr">
+  <div class="dh"><h2>Your cart</h2><button type="button" class="d-close" onclick="toggleCart()" aria-label="Close">×</button></div>
+  <div class="d-items" id="di"></div>
+  <div class="d-foot">
+    <div class="d-total"><span class="d-total-l">Total</span><span class="d-total-v" id="dt">R0</span></div>
+    <button type="button" class="btn-checkout" onclick="location.href='checkout.html'">Proceed to checkout</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<div class="page-top">
+  <h1>Safety Companion</h1>
+  <p>Everything previewed on the homepage safety strip, in one place. This prototype explains the feature set; it does not send real alerts.</p>
+</div>
+
+<section class="safety-sec" style="padding-top:0">
+  <div>
+    <div class="s-pill">Original feature</div>
+    <div class="s-h">Beauty should never cost your safety.</div>
+    <div class="s-sub">KasiGlow's Safety Companion is purpose-built for township women booking home-visit beauty services — because we know the realities.</div>
+    <div class="s-feats">
+      <div class="sf"><div class="sf-ic">A</div><div class="sf-info"><strong>Appointment sharing</strong><span>One tap sends your booking details to a trusted contact via WhatsApp.</span></div></div>
+      <div class="sf"><div class="sf-ic">P</div><div class="sf-info"><strong>Panic button</strong><span>Instantly alerts your contact and surfaces SAPS (10111) and the GBV hotline (0800 428 428).</span></div></div>
+      <div class="sf"><div class="sf-ic">V</div><div class="sf-info"><strong>Verified providers</strong><span>Every provider completes ID verification before listing on the platform.</span></div></div>
+      <div class="sf"><div class="sf-ic">W</div><div class="sf-info"><strong>Women-only filter</strong><span>Filter providers to show only verified female artists for added comfort.</span></div></div>
+      <div class="sf"><div class="sf-ic">C</div><div class="sf-info"><strong>Check-in timer</strong><span>Optional timer for longer appointments; if you do not mark complete, a contact can be notified.</span></div></div>
+    </div>
+    <a href="services.html" class="btn btn-primary">Book with confidence</a>
+    <a href="index.html" class="btn btn-secondary" style="margin-left:10px">Back to home</a>
+  </div>
+  <div class="phone-mock">
+    <div class="pm-bar"><div class="pm-app">KasiGlow</div><div style="display:flex;align-items:center;gap:5px"><div class="pm-dot"></div><span style="font-size:11px;color:var(--green)">Safety active</span></div></div>
+    <div class="pm-sc">
+      <div class="pm-notif">
+        <div class="pm-ni">WA</div>
+        <div class="pm-ni-b" style="flex:1">
+          <strong>WhatsApp sent to trusted contact</strong>
+          <span>Enter a number and send booking details.</span>
+          <div class="safe-row">
+            <input id="trustedNumber" class="safe-input" placeholder="e.g. 0821234567">
+            <button type="button" class="safe-btn" onclick="sendTrustedContact()">Send</button>
+          </div>
+          <div id="trustedStatus" class="safe-status">No contact sent yet.</div>
+        </div>
+      </div>
+      <div class="pm-notif">
+        <div class="pm-ni">TM</div>
+        <div class="pm-ni-b" style="flex:1">
+          <strong>Check-in timer</strong>
+          <span>Auto-alert if not marked complete.</span>
+          <div class="safe-row">
+            <button type="button" class="safe-btn" onclick="safetyCheckIn()">Check in</button>
+            <button type="button" class="safe-btn secondary" onclick="safetyCheckOut()">Check out</button>
+          </div>
+          <div id="timerStatus" class="safe-status">Timer idle.</div>
+        </div>
+      </div>
+      <div class="pm-notif">
+        <div class="pm-ni">OK</div>
+        <div class="pm-ni-b" style="flex:1">
+          <strong>Verified provider</strong>
+          <span id="verifyText">Pick a provider to verify.</span>
+          <div class="safe-row">
+            <select id="verifyProvider" class="safe-input" style="max-width:240px"></select>
+            <button type="button" class="safe-btn" onclick="checkProviderVerification()">Check</button>
+          </div>
+          <div id="verifyStatus" class="safe-status">Verification not checked yet.</div>
+        </div>
+      </div>
+      <button type="button" class="pm-panic" onclick="toast('In the live app this alerts your contact and shows SAPS: 10111')">PANIC — emergency alert</button>
+    </div>
+    <div class="pm-nums">GBV hotline: 0800 428 428 · SAPS: 10111</div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--white)">
+  <div class="sec-t">Crisis <span>numbers</span></div>
+  <p class="sec-sub" style="margin-bottom:20px">Save these on your phone. KasiGlow does not replace emergency services.</p>
+  <div class="panel"><h3>GBV command centre</h3><p style="color:var(--mid);line-height:1.75">0800 428 428 (24/7)</p></div>
+  <div class="panel"><h3>SAPS emergency</h3><p style="color:var(--mid);line-height:1.75">10111</p></div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div><div class="fb">KasiGlow</div><div class="fd">Connecting township beauty entrepreneurs with customers across South Africa.</div></div>
+    <div><div class="fh">Platform</div><ul class="fl"><li><a href="services.html">Browse services</a></li><li><a href="providers.html">Find providers</a></li><li><a href="safety.html">Safety Companion</a></li><li><a href="saved.html">Saved stylists</a></li></ul></div>
+    <div><div class="fh">Services</div><ul class="fl"><li><a href="services.html?cat=braiding">Braiding</a></li><li><a href="services.html?cat=nails">Nails</a></li><li><a href="services.html?cat=lashes">Lashes</a></li><li><a href="services.html?cat=hair">Hair</a></li></ul></div>
+    <div><div class="fh">Support</div><ul class="fl"><li><a href="dashboard.html">My dashboard</a></li><li><a href="provider-dashboard.html">Provider hub</a></li><li><a href="#">GBV: 0800 428 428</a></li><li><a href="#">SAPS: 10111</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 KasiGlow · INF3014F · UCT</span><span style="color:var(--gold)">Empowering township beauty</span></div>
+</footer>
+
+<script src="glowlink-app.js"></script>
+</body>
+</html>
+
+

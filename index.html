@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KasiGlow— Township Beauty Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="glowlink.css">
+</head>
+<body data-page="home">
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Kasi<span>Glow</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nl">Home</a>
+    <a href="services.html" class="nl">Services</a>
+    <a href="providers.html" class="nl">Providers</a>
+    <a href="safety.html" class="nl">Safety</a>
+    <a href="saved.html" class="nl">Saved</a>
+    <a href="dashboard.html" class="nl">My Bookings</a>
+    <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  </div>
+  <div class="nav-r">
+    <button type="button" class="nav-cart" onclick="toggleCart()" aria-label="Open cart">Cart<span class="cart-badge" id="cb"></span></button>
+    <a href="checkout.html" class="nl nav-cta">Book Now</a>
+    <button type="button" class="hamburger" onclick="toggleMob()">Menu</button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="index.html" class="nl">Home</a>
+  <a href="services.html" class="nl">Services</a>
+  <a href="providers.html" class="nl">Providers</a>
+  <a href="safety.html" class="nl">Safety Companion</a>
+  <a href="saved.html" class="nl">Saved Stylists</a>
+  <a href="dashboard.html" class="nl">My Bookings</a>
+  <a href="provider-dashboard.html" class="nl">Provider Hub</a>
+  <a href="checkout.html" class="nl nav-cta" style="margin-top:8px;justify-content:center;display:flex">Book Now</a>
+</div>
+
+<div class="overlay" id="ov" onclick="toggleCart()"></div>
+<div class="drawer" id="dr">
+  <div class="dh"><h2>Your cart</h2><button type="button" class="d-close" onclick="toggleCart()" aria-label="Close">×</button></div>
+  <div class="d-items" id="di"></div>
+  <div class="d-foot">
+    <div class="d-total"><span class="d-total-l">Total</span><span class="d-total-v" id="dt">R0</span></div>
+    <button type="button" class="btn-checkout" onclick="location.href='checkout.html'">Proceed to checkout</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hero-l">
+    <div class="hero-tag"><span class="pdot"></span>Township-first beauty platform</div>
+    <h1>Your Beauty,<br><em>Your Hood.</em></h1>
+    <p class="hero-sub">Discover, book, and pay local beauty artists in your township. Verified providers, transparent pricing, and built-in safety tools — for every woman.</p>
+    <div class="hero-btns">
+      <a href="services.html" class="btn btn-white btn-lg">Find a service</a>
+      <a href="providers.html" class="btn btn-ghost btn-lg">View providers</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="sv">2,400+</div><div class="sl">Verified providers</div></div>
+      <div><div class="sv">18K+</div><div class="sl">Bookings made</div></div>
+      <div><div class="sv">4.9 / 5</div><div class="sl">Avg. rating</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="sc">
+      <div class="sc-title">Find your glow</div>
+      <div class="hero-si">
+        <input id="hq" placeholder="Service, e.g. braiding, nails…" onkeydown="if(event.key==='Enter')doSearch()">
+        <input id="ha" placeholder="Area" style="max-width:130px">
+        <button type="button" onclick="doSearch()">Search</button>
+      </div>
+      <div class="chips">
+        <a href="services.html?cat=braiding" class="chip">Braiding</a>
+        <a href="services.html?cat=nails" class="chip">Nails</a>
+        <a href="services.html?cat=lashes" class="chip">Lashes</a>
+        <a href="services.html?cat=hair" class="chip">Hair</a>
+        <a href="services.html?cat=makeup" class="chip">Makeup</a>
+      </div>
+      <div class="hdiv"></div>
+      <div class="htitle">Trending near you</div>
+      <a href="provider-profile.html?id=1" class="mc">
+        <div class="mc-av"><img src="https://picsum.photos/seed/kasiglow-1/84/84" alt="Nomsa Khumalo"></div>
+        <div><div class="mc-n">Nomsa Khumalo</div><div class="mc-s">Nail tech · Gugulethu</div></div>
+        <div class="mc-r">4.9</div>
+      </a>
+      <a href="provider-profile.html?id=2" class="mc">
+        <div class="mc-av"><img src="https://picsum.photos/seed/kasiglow-2/84/84" alt="Thandi Dube"></div>
+        <div><div class="mc-n">Thandi Dube</div><div class="mc-s">Braiding · Khayelitsha</div></div>
+        <div class="mc-r">4.8</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--white)">
+  <div class="sec-hd">
+    <div><div class="sec-t">Browse by <span>service</span></div><div class="sec-sub">Six categories · hundreds of artists near you</div></div>
+    <a href="services.html" class="see-all">See all</a>
+  </div>
+  <div class="cat-grid">
+    <a href="services.html?cat=braiding" class="cat-card"><span class="cat-ic">B</span><div class="cat-nm">Braiding</div><div class="cat-cnt">342 providers</div></a>
+    <a href="services.html?cat=nails" class="cat-card"><span class="cat-ic">N</span><div class="cat-nm">Nails</div><div class="cat-cnt">289 providers</div></a>
+    <a href="services.html?cat=lashes" class="cat-card"><span class="cat-ic">L</span><div class="cat-nm">Lashes</div><div class="cat-cnt">178 providers</div></a>
+    <a href="services.html?cat=hair" class="cat-card"><span class="cat-ic">H</span><div class="cat-nm">Hair</div><div class="cat-cnt">412 providers</div></a>
+    <a href="services.html?cat=makeup" class="cat-card"><span class="cat-ic">M</span><div class="cat-nm">Makeup</div><div class="cat-cnt">156 providers</div></a>
+    <a href="services.html?cat=skincare" class="cat-card"><span class="cat-ic">S</span><div class="cat-nm">Skincare</div><div class="cat-cnt">94 providers</div></a>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--blush);padding-top:48px">
+  <div class="sec-hd">
+    <div><div class="sec-t">Featured <span>providers</span></div><div class="sec-sub">Top-rated, verified beauty artists near you</div></div>
+    <a href="providers.html" class="see-all">View all</a>
+  </div>
+  <div class="p-grid" id="featGrid"></div>
+</section>
+
+<section class="hiw">
+  <div class="sec-t" style="color:var(--white)">How <span style="color:var(--gold)">KasiGlow</span> works</div>
+  <div class="sec-sub" style="color:rgba(255,255,255,.6)">Three simple steps to your next glam session</div>
+  <div class="hiw-grid">
+    <div class="hiw-step"><div class="hiw-n">01</div><span class="hiw-ic">S</span><div class="hiw-t">Search and discover</div><div class="hiw-d">Browse verified township beauty artists by service, location, price, and rating. Filter for mobile service or women-only.</div></div>
+    <div class="hiw-step"><div class="hiw-n">02</div><span class="hiw-ic">B</span><div class="hiw-t">Book and pay</div><div class="hiw-d">Choose a time slot, add to cart, pay a 30% deposit or in full. Get instant WhatsApp confirmation.</div></div>
+    <div class="hiw-step"><div class="hiw-n">03</div><span class="hiw-ic">G</span><div class="hiw-t">Glow up safely</div><div class="hiw-d">Use the Safety Companion to share your booking. Leave a review and earn GlowPoints.</div></div>
+  </div>
+</section>
+
+<section class="safety-sec">
+  <div>
+    <div class="s-pill">Original feature</div>
+    <div class="s-h">Beauty should never cost your safety.</div>
+    <div class="s-sub">KasiGlow's Safety Companion is purpose-built for township women booking home-visit beauty services — because we know the realities.</div>
+    <div class="s-feats">
+      <div class="sf"><div class="sf-ic">A</div><div class="sf-info"><strong>Appointment sharing</strong><span>One tap sends your booking details to a trusted contact via WhatsApp.</span></div></div>
+      <div class="sf"><div class="sf-ic">P</div><div class="sf-info"><strong>Panic button</strong><span>Instantly alerts your contact and shows SAPS and GBV hotline numbers.</span></div></div>
+      <div class="sf"><div class="sf-ic">V</div><div class="sf-info"><strong>Verified providers</strong><span>Every provider completes ID verification before listing on the platform.</span></div></div>
+      <div class="sf"><div class="sf-ic">W</div><div class="sf-info"><strong>Women-only filter</strong><span>Filter providers to show only verified female artists for added comfort.</span></div></div>
+    </div>
+    <a href="safety.html" class="btn btn-primary">Learn about Safety Companion</a>
+  </div>
+  <div class="phone-mock">
+    <div class="pm-bar"><div class="pm-app">KasiGlow</div><div style="display:flex;align-items:center;gap:5px"><div class="pm-dot"></div><span style="font-size:11px;color:var(--green)">Safety active</span></div></div>
+    <div class="pm-sc">
+      <div class="pm-notif"><div class="pm-ni">WA</div><div class="pm-ni-b"><strong>WhatsApp sent to Mama</strong><span>"Thandi's nail appointment with Nomsa at 14:00, Gugulethu"</span></div></div>
+      <div class="pm-notif"><div class="pm-ni">TM</div><div class="pm-ni-b"><strong>Check-in timer: 2h 15m</strong><span>Auto-alert if not marked complete</span></div></div>
+      <div class="pm-notif"><div class="pm-ni">OK</div><div class="pm-ni-b"><strong>Nomsa Khumalo — verified</strong><span>4.9 rating · 312 bookings · ID checked</span></div></div>
+      <button type="button" class="pm-panic" onclick="toast('In the live app this alerts your contact and shows SAPS: 10111')">PANIC — emergency alert</button>
+    </div>
+    <div class="pm-nums">GBV hotline: 0800 428 428 · SAPS: 10111</div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div><div class="fb">KasiGlow</div><div class="fd">Connecting township beauty entrepreneurs with customers across South Africa. Built for the hood, by the hood.</div></div>
+    <div><div class="fh">Platform</div><ul class="fl"><li><a href="services.html">Browse services</a></li><li><a href="providers.html">Find providers</a></li><li><a href="safety.html">Safety Companion</a></li><li><a href="saved.html">Saved stylists</a></li></ul></div>
+    <div><div class="fh">Services</div><ul class="fl"><li><a href="services.html?cat=braiding">Braiding</a></li><li><a href="services.html?cat=nails">Nails and gel</a></li><li><a href="services.html?cat=lashes">Lashes</a></li><li><a href="services.html?cat=hair">Hair</a></li></ul></div>
+    <div><div class="fh">Support</div><ul class="fl"><li><a href="dashboard.html">My dashboard</a></li><li><a href="provider-dashboard.html">Provider hub</a></li><li><a href="#">GBV: 0800 428 428</a></li><li><a href="#">SAPS: 10111</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 KasiGlow · INF3014F · UCT</span><span style="color:var(--gold)">Empowering township beauty</span></div>
+</footer>
+
+<script src="glowlink-app.js"></script>
+</body>
+</html>
+
+
+
